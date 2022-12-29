@@ -1,7 +1,7 @@
 import express from "express";
 import userController from "../controller/userController";
 import adminController from "../controller/adminController";
-import itemController from "../controller/ItemController";
+import itemController from "../controller/itemController";
 import categorieController from "../controller/categorieController";
 import brandController from "../controller/brandController";
 
