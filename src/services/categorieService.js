@@ -11,6 +11,8 @@ const addcategorie = (data) => {
       } else {
         let categorie = await db.Categorie.findOne({
           where: { name: data.name },
+          raw: false,
+          nest: true,
         });
         if (categorie) {
           console.log("user >>>>>", categorie);
@@ -45,6 +47,8 @@ const getallcategorie = () => {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
+        raw: false,
+        nest: true,
       });
       if (!dataCategorie) {
         resolve({

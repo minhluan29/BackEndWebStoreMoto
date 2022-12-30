@@ -12,6 +12,8 @@ const addBrand = (data) => {
       } else {
         let dataBrand = await db.Brand.findOne({
           where: { name: data.name },
+          raw: false,
+          nest: true,
         });
         if (dataBrand) {
           console.log("user >>>>>", dataBrand);
@@ -44,6 +46,8 @@ const getAllBrand = () => {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
+        raw: false,
+        nest: true,
       });
       if (!dataBrand) {
         resolve({

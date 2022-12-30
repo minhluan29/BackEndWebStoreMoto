@@ -13,6 +13,8 @@ const registerAccountAdmin = (data) => {
       } else {
         let user = await db.User.findOne({
           where: { email: data.email },
+          raw: false,
+          nest: true,
         });
         if (user) {
           console.log("user >>>>>", user);
@@ -58,6 +60,8 @@ const loginAdmin = (data) => {
       } else {
         let checkemail = await db.User.findOne({
           where: { email: data.email },
+          raw: false,
+          nest: true,
           attributes: ["email", "password", "fullName"],
         });
 
