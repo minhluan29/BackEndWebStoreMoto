@@ -30,7 +30,7 @@ const addItem = (product) => {
             qty: data.qty,
             des: data.des,
             status: data.status,
-            soldCount: "",
+            soldCount: " ",
           });
           resolve({
             errCode: 0,
