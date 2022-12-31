@@ -8,7 +8,7 @@ const addItem = (product) => {
       if (!data.name || !data.originalPrice) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa truyền dữ liệu cho t sao tao tạo?",
+          errMessage: "Bạn chưa truyền dữ liệu cho tui sao tui tạo?",
         });
       } else {
         let Item = await db.Item.findOne({
@@ -147,7 +147,7 @@ const editItem = (state) => {
       if (!data) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa truyền dữ liệu cho t sao tao sửa ?",
+          errMessage: "Bạn chưa truyền dữ liệu cho tui sao tui sửa ?",
         });
       } else {
         let item = await db.Item.findOne({
@@ -199,7 +199,7 @@ const deleteItem = (Item) => {
       if (!data) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa chọn item sao mà xóa ? ?",
+          errMessage: "Bạn chưa chọn item sao mà xóa ? ?",
         });
       } else {
         let item = await db.Item.findOne({
@@ -245,7 +245,7 @@ const findItem = (data) => {
       if (!find.name) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa nhập dữ liệu cho việc tìm kiếm ? !!!",
+          errMessage: "Bạn chưa nhập dữ liệu cho việc tìm kiếm ? !!!",
         });
       } else {
         if (find) {

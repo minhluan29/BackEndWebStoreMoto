@@ -28,7 +28,21 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+    let response = await userService.getUser(req.body);
+    return res.status(200).json(response);
+  } catch (error) {
+    console.log(error);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Hệ thống đã xảy ra lỗi rồi :))",
+    });
+  }
+};
+
 module.exports = {
   registerAccountUser,
   loginUser,
+  getUser,
 };

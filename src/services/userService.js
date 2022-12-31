@@ -8,7 +8,7 @@ const registerAccountUser = (data) => {
       if (!data.email || !data.password || !data.fullName) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa truyền dữ liệu cho t sao tao tạo?",
+          errMessage: "Bạn chưa truyền dữ liệu cho tui sao tui tạo?",
         });
       } else {
         let user = await db.User.findOne({
@@ -97,7 +97,51 @@ const loginUser = (data) => {
   });
 };
 
+const getUser = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({
+        where: { email: data.email },
+        attributes: {
+          exclude: [
+            "createdAt",
+            "updatedAt",
+            "id",
+            "image",
+            "dob",
+            "status",
+            "role_id",
+          ],
+        },
+        raw: false,
+        nest: true,
+      });
+      if (!user) {
+        resolve({
+          errCode: 2,
+          errMessage: "Không có dữ liệu trong data !!!",
+        });
+      } else {
+        // user.forEach((element) => {
+        //   return (element.image = new Buffer(element.image, "base64").toString(
+        //     "binary"
+        //   ));
+        // });
+        resolve({
+          errCode: 0,
+          errMessage: "Lấy thành công !!!",
+          data: user,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   registerAccountUser,
   loginUser,
+  getUser,
 };

@@ -6,7 +6,7 @@ const addcategorie = (data) => {
       if (!data.name) {
         resolve({
           errCode: 2,
-          errMessage: "Mày chưa truyền dữ liệu cho t sao tao tạo?",
+          errMessage: "Bạn chưa truyền dữ liệu cho tui sao tui tạo?",
         });
       } else {
         let categorie = await db.Categorie.findOne({

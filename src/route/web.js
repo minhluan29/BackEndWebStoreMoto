@@ -35,6 +35,8 @@ let initWebRoutes = (app) => {
 
   // // // Đăng nhập User
   router.post("/api/loginUser", userController.loginUser);
+  // get user
+  router.get("/api/getUser", userController.getUser);
 
   // Item
   // Thêm Sản Phẩm
