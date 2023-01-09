@@ -4,6 +4,7 @@ import adminController from "../controller/adminController";
 import itemController from "../controller/itemController";
 import categorieController from "../controller/categorieController";
 import brandController from "../controller/brandController";
+import orderController from "../controller/orderController";
 
 let router = express.Router();
 
@@ -35,8 +36,8 @@ let initWebRoutes = (app) => {
 
   // // // Đăng nhập User
   router.post("/api/loginUser", userController.loginUser);
-  // get user
-  router.get("/api/getUser", userController.getUser);
+  // getAllUser
+  router.get("/api/getAllUser", userController.getAllUser);
 
   // Item
   // Thêm Sản Phẩm
@@ -63,6 +64,11 @@ let initWebRoutes = (app) => {
   router.get("/api/getAllBrand", brandController.getAllBrand);
   // add brand
   router.post("/api/addBrand", brandController.addBrand);
+
+  //create new order
+  router.post("/api/create-order", orderController.createOrder);
+  router.get("/api/get-all-order", orderController.getAllOrder);
+  router.get("/api/get-order-info", orderController.getOrderInfoById);
 
   return app.use("/", router);
 };

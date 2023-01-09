@@ -1,9 +1,8 @@
-import userService from "../services/userService";
+import orderService from "../services/orderService";
 
-const registerAccountUser = async (req, res) => {
+const createOrder = async (req, res) => {
   try {
-    console.log("check data", req.body);
-    let response = await userService.registerAccountUser(req.body);
+    let response = await orderService.createNewOrder(req.body);
     return res.status(200).json(response);
   } catch (error) {
     console.log(error);
@@ -13,11 +12,9 @@ const registerAccountUser = async (req, res) => {
     });
   }
 };
-
-const loginUser = async (req, res) => {
+const getAllOrder = async (req, res) => {
   try {
-    console.log("check data", req.body);
-    let response = await userService.loginUser(req.body);
+    let response = await orderService.getAllOrder();
     return res.status(200).json(response);
   } catch (error) {
     console.log(error);
@@ -27,10 +24,9 @@ const loginUser = async (req, res) => {
     });
   }
 };
-
-const getAllUser = async (req, res) => {
+const getOrderInfoById = async (req, res) => {
   try {
-    let response = await userService.getAllUser(req.body);
+    let response = await orderService.getOrderInfoById(req.query.id);
     return res.status(200).json(response);
   } catch (error) {
     console.log(error);
@@ -40,9 +36,8 @@ const getAllUser = async (req, res) => {
     });
   }
 };
-
 module.exports = {
-  registerAccountUser,
-  loginUser,
-  getAllUser,
+  createOrder,
+  getAllOrder,
+  getOrderInfoById,
 };

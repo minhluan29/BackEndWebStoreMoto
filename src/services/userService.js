@@ -60,7 +60,7 @@ const loginUser = (data) => {
       } else {
         let checkemail = await db.User.findOne({
           where: { email: data.email },
-          attributes: ["email", "password", "fullName"],
+          attributes: ["email", "password", "fullName", "id"],
           raw: false,
           nest: true,
         });
@@ -97,40 +97,25 @@ const loginUser = (data) => {
   });
 };
 
-const getUser = (data) => {
+const getAllUser = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let user = await db.User.findOne({
-        where: { email: data.email },
+      let res = await db.User.findAll({
         attributes: {
-          exclude: [
-            "createdAt",
-            "updatedAt",
-            "id",
-            "image",
-            "dob",
-            "status",
-            "role_id",
-          ],
+          exclude: ["password"],
         },
         raw: false,
         nest: true,
       });
-      if (!user) {
-        resolve({
-          errCode: 2,
-          errMessage: "Không có dữ liệu trong data !!!",
-        });
-      } else {
-        // user.forEach((element) => {
-        //   return (element.image = new Buffer(element.image, "base64").toString(
-        //     "binary"
-        //   ));
-        // });
+      if (res) {
         resolve({
           errCode: 0,
-          errMessage: "Lấy thành công !!!",
-          data: user,
+          data: res,
+        });
+      } else {
+        resolve({
+          errCode: 1,
+          errMessage: "Đã có gì đó xảy ra!!!",
         });
       }
     } catch (error) {
@@ -143,5 +128,5 @@ const getUser = (data) => {
 module.exports = {
   registerAccountUser,
   loginUser,
-  getUser,
+  getAllUser,
 };
